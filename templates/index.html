@@ -1,0 +1,552 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <title>Fake News Prediction</title>
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="./static/css/style.css" rel="stylesheet">
+  <link href="./static/css/responsive.css" rel="stylesheet">
+  <link href="./static/css/colors.css" rel="stylesheet">
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+  crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+
+  <div class="header-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="logo">
+                    <h1>News App</h1>
+                </div><!-- end logo -->
+            </div>
+        </div><!-- end row -->
+    </div><!-- end header-logo -->
+  </div><!-- end header -->
+
+  <section class="section first-section">
+    <div class="container-fluid">
+        <div class="masonry-blog clearfix">
+            <div class="left-side">
+                <div class="masonry-box post-media">
+                     <img src="./static/images/pic.jpg" alt="" class="img-fluid">
+                     <div class="shadoweffect">
+                        <div class="shadow-desc">
+                            <div class="blog-meta">
+                                <span class="bg-aqua"><a href="blog-category-01.html" title="">Lifestyle</a></span>
+                                <h4><a href="single.html" title="">The golden rules you need to know for a positive life</a></h4>
+                                <small><a href="single.html" title="">24 July, 2017</a></small>
+                                <small><a href="blog-author.html" title="">by Amanda</a></small>
+                            </div><!-- end meta -->
+                        </div><!-- end shadow-desc -->
+                    </div><!-- end shadow -->
+                </div><!-- end post-media -->
+            </div><!-- end left-side -->
+
+            <div class="center-side">
+                <div class="masonry-box post-media">
+                     <img src="./static/images/pic.jpg" alt="" class="img-fluid">
+                     <div class="shadoweffect">
+                        <div class="shadow-desc">
+                            <div class="blog-meta">
+                                <span class="bg-green"><a href="blog-category-01.html" title="">Travel</a></span>
+                                <h4><a href="single.html" title="">5 places you should see</a></h4>
+                                <small><a href="single.html" title="">24 July, 2017</a></small>
+                                <small><a href="blog-author.html" title="">by Amanda</a></small>
+                            </div><!-- end meta -->
+                        </div><!-- end shadow-desc -->
+                    </div><!-- end shadow -->
+                </div><!-- end post-media -->
+
+                <div class="masonry-box small-box post-media">
+                     <img src="./static/images/pic.jpg" alt="" class="img-fluid">
+                     <div class="shadoweffect">
+                        <div class="shadow-desc">
+                            <div class="blog-meta">
+                                <span class="bg-green"><a href="blog-category-01.html" title="">Travel</a></span>
+                                <h4><a href="single.html" title="">Separate your place with exotic hotels</a></h4>
+                            </div><!-- end meta -->
+                        </div><!-- end shadow-desc -->
+                    </div><!-- end shadow -->
+                </div><!-- end post-media -->
+
+                <div class="masonry-box small-box post-media">
+                     <img src="./static/images/pic.jpg" alt="" class="img-fluid">
+                     <div class="shadoweffect">
+                        <div class="shadow-desc">
+                            <div class="blog-meta">
+                                <span class="bg-green"><a href="blog-category-01.html" title="">Travel</a></span>
+                                <h4><a href="single.html" title="">What you need to know for child health</a></h4>
+                            </div><!-- end meta -->
+                        </div><!-- end shadow-desc -->
+                    </div><!-- end shadow -->
+                </div><!-- end post-media -->
+            </div><!-- end left-side -->
+
+            <div class="right-side hidden-md-down">
+                <div class="masonry-box post-media">
+                     <img src="./static/images/pic.jpg" alt="" class="img-fluid">
+                     <div class="shadoweffect">
+                        <div class="shadow-desc">
+                            <div class="blog-meta">
+                                <span class="bg-aqua"><a href="blog-category-01.html" title="">Lifestyle</a></span>
+                                <h4><a href="single.html" title="">The rules you need to know for a happy union</a></h4>
+                                <small><a href="single.html" title="">03 July, 2017</a></small>
+                                <small><a href="blog-author.html" title="">by Jessica</a></small>
+                            </div><!-- end meta -->
+                        </div><!-- end shadow-desc -->
+                     </div><!-- end shadow -->
+                </div><!-- end post-media -->
+            </div><!-- end right-side -->
+        </div><!-- end masonry -->
+    </div>
+  </section>
+
+  <section class="section first-section">
+    <h2 style=text-align:center class="detect">Detect Fake News</h2>
+    <p style=text-align:center class="detecttext">Enter your text to try it.</p>
+    <br>
+    <div class='container'>
+      <form action="/" method="POST">
+      <div class="col-three-forth text-center col-md-offset-2">
+        <div class="form-group">
+        <textarea class="form-control jTextarea mt-3" id="jTextarea'" rows="5" name="text"
+          placeholder="Write your text here..." required>{{text}}</textarea>
+        <button class="predict" type="submit" name="predict">Predict</button>
+        </div>
+      </div>
+      </form>
+    </div>
+    <p style="text-align:center" class="predictresult"><strong>Prediction : {{result}}</strong></p>
+    </section>
+
+    <section class="section first-section">
+        <h2 style=text-align:center class="detect">Summarize News Articles</h2>
+        <p style=text-align:center class="detecttext">Enter your text to try it.</p>
+        <br>
+        <div class='container'>
+          <form action="/summary/" method="POST">
+          <div class="col-three-forth text-center col-md-offset-2">
+            <div class="form-group">
+            <textarea class="form-control jTextarea mt-3" id="jTextarea'" rows="5" name="text"
+              placeholder="Write your text here..." required>{{text_summ}}</textarea>
+            <button class="predict" type="submit" name="predict">Summarize</button>
+            </div>
+          </div>
+          </form>
+        </div>
+        <p style="text-align:center" class="predictresult"><strong>Summary : {{result_summ}}</strong></p>
+        </section>
+
+  <!-- <section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="section-title">
+                    <h3 class="color-aqua"><a href="blog-category-01.html" title="">Lifestyle</a></h3>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="blog-box">
+                            <div class="post-media">
+                                <a href="single.html" title="">
+                                    <img src="./static/images/pic.jpg" alt="" class="img-fluid">
+                                    <div class="hovereffect">
+                                        <span></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="blog-meta big-meta">
+                                <h4><a href="single.html" title="">The golden rules you need to know for a positive life</a></h4>
+                                <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim nibh, maximus ac felis nec, maximus tempor odio.</p>
+                                <small><a href="blog-category-01.html" title="">Lifestyle</a></small>
+                                <small><a href="single.html" title="">24 July, 2017</a></small>
+                                <small><a href="blog-author.html" title="">by Amanda</a></small>
+                            </div>
+                        </div>
+
+                        <hr class="invis">
+
+                        <div class="blog-box">
+                            <div class="post-media">
+                                <a href="single.html" title="">
+                                    <img src="./static/images/pic.jpg" alt="" class="img-fluid">
+                                    <div class="hovereffect">
+                                        <span></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="blog-meta big-meta">
+                                <h4><a href="single.html" title="">I have a desert visit this summer</a></h4>
+                                <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim nibh, maximus ac felis nec, maximus tempor odio.</p>
+                                <small><a href="blog-category-01.html" title="">Lifestyle</a></small>
+                                <small><a href="single.html" title="">22 July, 2017</a></small>
+                                <small><a href="blog-author.html" title="">by Martines</a></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="section-title">
+                    <h3 class="color-pink"><a href="blog-category-01.html" title="">Fashion</a></h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="blog-box">
+                            <div class="post-media">
+                                <a href="single.html" title="">
+                                    <img src="./static/images/pic.jpg" alt="" class="img-fluid">
+                                    <div class="hovereffect">
+                                        <span></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="blog-meta">
+                                <h4><a href="single.html" title="">What is your favorite leather jacket color</a></h4>
+                                <small><a href="blog-category-01.html" title="">Fashion</a></small>
+                                <small><a href="blog-category-01.html" title="">21 July, 2017</a></small>
+                            </div>
+                        </div>
+
+                        <hr class="invis">
+
+                        <div class="blog-box">
+                            <div class="post-media">
+                                <a href="single.html" title="">
+                                    <img src="./static/images/pic.jpg" alt="" class="img-fluid">
+                                    <div class="hovereffect">
+                                        <span></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="blog-meta">
+                                <h4><a href="single.html" title="">Is summer, have you bought a cane</a></h4>
+                                <small><a href="blog-category-01.html" title="">Fashion</a></small>
+                                <small><a href="blog-category-01.html" title="">11 July, 2017</a></small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="blog-box">
+                            <div class="post-media">
+                                <a href="single.html" title="">
+                                    <img src="./static/images/pic.jpg" alt="" class="img-fluid">
+                                    <div class="hovereffect">
+                                        <span></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="blog-meta">
+                                <h4><a href="single.html" title="">This year's fashionable long beard</a></h4>
+                                <small><a href="blog-category-01.html" title="">Fashion</a>, <a href="blog-category-01.html" title="">Man</a></small>
+                                <small><a href="blog-category-01.html" title="">08 July, 2017</a></small>
+                            </div>
+                        </div>
+
+                        <hr class="invis">
+
+                        <div class="blog-box">
+                            <div class="post-media">
+                                <a href="single.html" title="">
+                                    <img src="./static/images/pic.jpg" alt="" class="img-fluid">
+                                    <div class="hovereffect">
+                                        <span></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="blog-meta">
+                                <h4><a href="single.html" title="">How to be more cool with clothing</a></h4>
+                                <small><a href="blog-category-01.html" title="">Fashion</a>, <a href="blog-category-01.html" title="">Style</a></small>
+                                <small><a href="blog-category-01.html" title="">04 July, 2017</a></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="blog-list clearfix">
+                    <div class="section-title">
+                        <h3 class="color-green"><a href="blog-category-01.html" title="">Travel</a></h3>
+                    </div>
+
+                    <div class="blog-box row">
+                        <div class="col-md-4">
+                            <div class="post-media">
+                                <a href="single.html" title="">
+                                    <img src="./static/images/pic.jpg" alt="" class="img-fluid">
+                                    <div class="hovereffect"></div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="blog-meta big-meta col-md-8">
+                            <h4><a href="single.html" title="">5 Beautiful buildings you need to visit without dying</a></h4>
+                            <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim nibh, maximus ac felis nec, maximus tempor odio.</p>
+                            <small><a href="blog-category-01.html" title="">Travel</a></small>
+                            <small><a href="single.html" title="">21 July, 2017</a></small>
+                            <small><a href="blog-author.html" title="">by Boby</a></small>
+                        </div>
+                    </div>
+
+                    <hr class="invis">
+
+                    <div class="blog-box row">
+                        <div class="col-md-4">
+                            <div class="post-media">
+                                <a href="single.html" title="">
+                                    <img src="./static/images/pic.jpg" alt="" class="img-fluid">
+                                    <div class="hovereffect"></div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="blog-meta big-meta col-md-8">
+                            <h4><a href="single.html" title="">Let's make an introduction to the glorious world of history</a></h4>
+                            <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim nibh, maximus ac felis nec, maximus tempor odio.</p>
+                            <small><a href="blog-category-01.html" title="">Travel</a></small>
+                            <small><a href="single.html" title="">20 July, 2017</a></small>
+                            <small><a href="blog-author.html" title="">by Samanta</a></small>
+                        </div>
+                    </div>
+
+                    <hr class="invis">
+
+                    <div class="blog-box row">
+                        <div class="col-md-4">
+                            <div class="post-media">
+                                <a href="single.html" title="">
+                                    <img src="./static/images/pic.jpg" alt="" class="img-fluid">
+                                    <div class="hovereffect"></div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="blog-meta big-meta col-md-8">
+                            <h4><a href="single.html" title="">Did you see the most beautiful sea in the world?</a></h4>
+                            <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim nibh, maximus ac felis nec, maximus tempor odio.</p>
+                            <small><a href="blog-category-01.html" title="">Travel</a></small>
+                            <small><a href="single.html" title="">19 July, 2017</a></small>
+                            <small><a href="blog-author.html" title="">by Jackie</a></small>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="invis">
+
+                <div class="blog-list clearfix">
+                    <div class="section-title">
+                        <h3 class="color-red"><a href="blog-category-01.html" title="">Food</a></h3>
+                    </div>
+
+                    <div class="blog-box row">
+                        <div class="col-md-4">
+                            <div class="post-media">
+                                <a href="single.html" title="">
+                                    <img src="./static/images/pic.jpg" alt="" class="img-fluid">
+                                    <div class="hovereffect"></div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="blog-meta big-meta col-md-8">
+                            <h4><a href="single.html" title="">Banana-chip chocolate cake recipe</a></h4>
+                            <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim nibh, maximus ac felis nec, maximus tempor odio.</p>
+                            <small><a href="blog-category-01.html" title="">Food</a></small>
+                            <small><a href="single.html" title="">11 July, 2017</a></small>
+                            <small><a href="blog-author.html" title="">by Matilda</a></small>
+                        </div>
+                    </div>
+
+                    <hr class="invis">
+
+                    <div class="blog-box row">
+                        <div class="col-md-4">
+                            <div class="post-media">
+                                <a href="single.html" title="">
+                                    <img src="./static/images/pic.jpg" alt="" class="img-fluid">
+                                    <div class="hovereffect"></div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="blog-meta big-meta col-md-8">
+                            <h4><a href="single.html" title="">10 practical ways to choose organic vegetables</a></h4>
+                            <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim nibh, maximus ac felis nec, maximus tempor odio.</p>
+                            <small><a href="blog-category-01.html" title="">Food</a></small>
+                            <small><a href="single.html" title="">10 July, 2017</a></small>
+                            <small><a href="blog-author.html" title="">by Matilda</a></small>
+                        </div>
+                    </div>
+
+                    <hr class="invis">
+
+                    <div class="blog-box row">
+                        <div class="col-md-4">
+                            <div class="post-media">
+                                <a href="single.html" title="">
+                                    <img src="./static/images/pic.jpg" alt="" class="img-fluid">
+                                    <div class="hovereffect"></div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="blog-meta big-meta col-md-8">
+                            <h4><a href="single.html" title="">We are making homemade ravioli</a></h4>
+                            <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim nibh, maximus ac felis nec, maximus tempor odio.</p>
+                            <small><a href="blog-category-01.html" title="">Food</a></small>
+                            <small><a href="single.html" title="">09 July, 2017</a></small>
+                            <small><a href="blog-author.html" title="">by Matilda</a></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="section-title">
+                    <h3 class="color-yellow"><a href="blog-category-01.html" title="">Vlogs</a></h3>
+                </div>
+
+                <div class="blog-box">
+                    <div class="post-media">
+                        <a href="single.html" title="">
+                            <img src="./static/images/pic.jpg" alt="" class="img-fluid">
+                            <div class="hovereffect">
+                                <span class="videohover"></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="blog-meta">
+                        <h4><a href="single.html" title="">We are guests of ABC Design Studio - Vlog</a></h4>
+                        <small><a href="blog-category-01.html" title="">Videos</a></small>
+                        <small><a href="blog-category-01.html" title="">21 July, 2017</a></small>
+                    </div>
+                </div>
+
+                <hr class="invis">
+
+                <div class="blog-box">
+                    <div class="post-media">
+                        <a href="single.html" title="">
+                            <img src="./static/images/pic.jpg" alt="" class="img-fluid">
+                            <div class="hovereffect">
+                                <span class="videohover"></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="blog-meta">
+                        <h4><a href="single.html" title="">Nostalgia at work</a></h4>
+                        <small><a href="blog-category-01.html" title="">Videos</a></small>
+                        <small><a href="blog-category-01.html" title="">20 July, 2017</a></small>
+                    </div>
+                </div>
+
+                <hr class="invis">
+
+                <div class="blog-box">
+                    <div class="post-media">
+                        <a href="single.html" title="">
+                            <img src="./static/images/pic.jpg" alt="" class="img-fluid">
+                            <div class="hovereffect">
+                                <span class="videohover"></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="blog-meta">
+                        <h4><a href="single.html" title="">How to become a good vlogger</a></h4>
+                        <small><a href="blog-category-01.html" title="">Beauty</a></small>
+                        <small><a href="blog-category-01.html" title="">20 July, 2017</a></small>
+                    </div>
+                </div>
+
+                <hr class="invis">
+
+                <div class="section-title">
+                    <h3 class="color-grey"><a href="blog-category-01.html" title="">Health</a></h3>
+                </div>
+
+                <div class="blog-box">
+                    <div class="post-media">
+                        <a href="single.html" title="">
+                            <img src="./static/images/pic.jpg" alt="" class="img-fluid">
+                            <div class="hovereffect">
+                                <span></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="blog-meta">
+                        <h4><a href="single.html" title="">Opened the doors of the Istanbul spa center</a></h4>
+                        <small><a href="blog-category-01.html" title="">Spa</a></small>
+                        <small><a href="blog-category-01.html" title="">21 July, 2017</a></small>
+                    </div>
+                </div>
+
+                <hr class="invis">
+
+                <div class="blog-box">
+                    <div class="post-media">
+                        <a href="single.html" title="">
+                            <img src="./static/images/pic.jpg" alt="" class="img-fluid">
+                            <div class="hovereffect">
+                                <span></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="blog-meta">
+                        <h4><a href="single.html" title="">2017 trends in health tourism</a></h4>
+                        <small><a href="blog-category-01.html" title="">Health</a></small>
+                        <small><a href="blog-category-01.html" title="">20 July, 2017</a></small>
+                    </div>
+                </div>
+
+                <hr class="invis">
+
+                <div class="blog-box">
+                    <div class="post-media">
+                        <a href="single.html" title="">
+                            <img src="./static/images/pic.jpg" alt="" class="img-fluid">
+                            <div class="hovereffect">
+                                <span></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="blog-meta">
+                        <h4><a href="single.html" title="">Experience the effects of miraculous stones</a></h4>
+                        <small><a href="blog-category-01.html" title="">Beauty</a></small>
+                        <small><a href="blog-category-01.html" title="">20 July, 2017</a></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section> -->
+ 
+<!-- <script>
+     function growTextarea (i,elem) {
+    var elem = $(elem);
+    var resizeTextarea = function( elem ) {
+        var scrollLeft = window.pageXOffset || (document.documentElement || document.body.parentNode || document.body).scrollLeft;
+        var scrollTop  = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop;  
+        elem.css('height', 'auto').css('height', elem.prop('scrollHeight') );
+          window.scrollTo(scrollLeft, scrollTop);
+      };
+      elem.on('input', function() {
+        resizeTextarea( $(this) );
+      });
+      resizeTextarea( $(elem) );
+  }
+  
+  $('.jTextarea').each(growTextarea);
+</script> -->
+</body>
+</html>
