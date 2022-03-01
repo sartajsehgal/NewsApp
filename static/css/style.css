@@ -575,23 +575,23 @@ div.tab button:hover {
     font-size: 20px;
     color: black;
 }
-/* 
-.left-side, .right-side{
+
+.left-right{
     height: 468px;
     width: 534px;
 }
 
-.center-side {
+.center-up {
     height: 261px;
     width: 533px;
 }
 
-.small-box {
-    height: 598px;
+.small-down {
+    height: 196px;
     width: 800px;
 }
 
-.post-media {
+/* .post-media {
     float:left;
     width:33%;
 } */

@@ -1,4 +1,5 @@
 from sre_parse import Tokenizer
+from unicodedata import category
 from flask import Flask, render_template, request, jsonify
 import nltk
 import pickle
@@ -13,6 +14,24 @@ from nltk.tokenize import sent_tokenize
 import numpy as np
 import networkx as nx
 import re
+from newsapi import NewsApiClient
+from datetime import datetime
+
+# Init
+newsapi = NewsApiClient(api_key='55bba2d308d647759e0763df9ef309b0')
+
+top_headlines = newsapi.get_top_headlines(country='us')
+
+# entertainment = newsapi.get_top_headlines(category='entertainment')
+
+# business = newsapi.get_top_headlines(category='business')
+
+# health = newsapi.get_top_headlines(category='health')
+
+# sports = newsapi.get_top_headlines(category='sports')
+
+#print(top_headlines['articles'][0]['publishedAt'].strptime('%Y-%m-%d'))
+# print(datetime.strptime(top_headlines['articles'][0]['publishedAt'], '%Y%m%d%H%M%S').strftime('%Y-%m-%d'))
 
 #Function to split text into sentences by fullstop(.)
 '''def read_article(text):
@@ -106,15 +125,15 @@ def generate_summary(text,top_n):
     return " ".join(summarize_text),len(sentences)
 
 
-@app.route('/summary/', methods=['POST'])
-def weba():
-    text = request.form['text']
-    summary, original_length = generate_summary(text,4)
+# @app.route('/summary/', methods=['POST'])
+# def weba():
+#     text = request.form['text']
+#     summary, original_length = generate_summary(text,4)
         
-    return render_template('index.html',
-                               result_summ=summary,
-                               text_summ = text,
-                               lines_summary = 3)
+#     return render_template('index.html',
+#                                result_summ=summary,
+#                                text_summ = text,
+#                                lines_summary = 3)
 
 
 
@@ -125,7 +144,7 @@ tfidfvect = pickle.load(open('tfidfvect.pkl', 'rb'))
 # Build functionalities
 @app.route('/', methods=['GET'])
 def home():
-    return render_template('index.html')
+    return render_template('index.html', top_headlines=top_headlines)
 def predict(text):
     review = re.sub('[^a-zA-Z]', ' ', text)
     review = review.lower()
@@ -140,7 +159,14 @@ def predict(text):
 def webapp():
     text = request.form['text']
     prediction = predict(text)
-    return render_template('index.html', text=text, result=prediction)
+    summary, original_length = generate_summary(text,3)
+        
+    return render_template('index.html',text=text, result=prediction,
+                               result_summ=summary,
+                               lines_summary = 3,
+                               top_headlines=top_headlines
+                               )
+    # return render_template('index.html', text=text, result=prediction)
 @app.route('/predict/', methods=['GET','POST'])
 def api():
     text = request.args.get("text")
